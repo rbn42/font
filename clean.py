@@ -25,6 +25,7 @@ def clean(src):
             i = int(l[0], 16)
             if i == 8237:
                 # 影响字高的字符
+                # Unicode Character 'LEFT-TO-RIGHT OVERRIDE' (U+202D)
                 continue
             src.selection.select(("more", None), char)
     src.cut()
