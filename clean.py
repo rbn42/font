@@ -18,6 +18,8 @@ import shutil
 def clean(src):
     for char in src:
         if src[char].foreground.isEmpty():
+            if char in ('space', ):
+                continue
             src.selection.select(("more", None), char)
     src.cut()
 
