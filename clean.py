@@ -13,12 +13,18 @@ Options:
 import fontforge
 import os
 import shutil
+import re
 
 
 def clean(src):
     for char in src:
         if src[char].foreground.isEmpty():
-            if char in ('space', ):
+            l = re.findall('uni([0-9A-F]+)', char)
+            if len(l) < 1:
+                continue
+            i = int(l[0], 16)
+            if i == 8237:
+                # 影响字高的字符
                 continue
             src.selection.select(("more", None), char)
     src.cut()
